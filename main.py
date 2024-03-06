@@ -10,12 +10,13 @@ from game.util import *
 from game.logic.base import BaseLogic
 from game.logic.justmovebro import JustMoveBro
 from game.logic.greedyv1 import GreedyV1
+from game.logic.greedytele import GreedyTele
 
 init()
 BASE_URL = "http://localhost:3000/api"
 DEFAULT_BOARD_ID = 1
 CONTROLLERS = {
-    "Random": RandomLogic, "JustMoveBro": JustMoveBro, "GreedyV1" : GreedyV1
+    "Random": RandomLogic, "JustMoveBro": JustMoveBro, "GreedyV1" : GreedyV1, "GreedyTele" : GreedyTele
 }
 
 ###############################################################################
