@@ -76,14 +76,15 @@ class GreedyTele(BaseLogic) :
         
         listDiamond = board.diamonds
         listTeleporters = [d for d in board.game_objects if d.type == "TeleportGameObject"]
+        baseDist, teleState1 = self.nearestWithTele(board_bot.properties.base, board_bot.position, listTeleporters)
         listButton = [d for d in board.game_objects if d.type == "DiamondButtonGameObject"]
-        if props.diamonds < 3 :
+        if props.diamonds < 3 and not ((baseDist + 1 >= (board_bot.properties.milliseconds_left/1000))):
             self.goal_position, teleState, nearestDist, rewardnya = self.findNearestDiamond(listDiamond, listTeleporters, board_bot)
-            if teleState == 1:
+            if teleState == 1 and self.distance(board_bot.position, listTeleporters[0].position) != 0:
                 self.goal_position = listTeleporters[0].position
                 print(f"otw, poinnya {rewardnya}")
                 print(f"TeleporterA : ({self.goal_position.x}, {self.goal_position.y})")
-            elif teleState == 2:
+            elif teleState == 2 and self.distance(board_bot.position, listTeleporters[1].position) != 0:
                 self.goal_position = listTeleporters[1].position
                 print(f"otw, poinnya {rewardnya}")
                 print(f"TeleporterB : ({self.goal_position.x}, {self.goal_position.y})")
@@ -93,29 +94,25 @@ class GreedyTele(BaseLogic) :
                 print(f"Diamond : x = ({self.goal_position.x}, {self.goal_position.y})")
             
         else :
-            base = board_bot.properties.base
-            _, teleState1 = self.nearestWithTele(base, board_bot.position, listTeleporters)
             gp, teleState2, nearestDistDM, rewardnya = self.findNearestDiamondAlt(listDiamond, listTeleporters, board_bot)
-            if (nearestDistDM <= 2 and (props.diamonds+rewardnya)<=5):
-                if teleState2 == 1:
+            if (nearestDistDM <= 2 and (props.diamonds+rewardnya)<=5) and not ((baseDist + 1 >= (board_bot.properties.milliseconds_left/1000))):
+                if teleState2 == 1 and self.distance(board_bot.position, listTeleporters[0].position) != 0:
                     self.goal_position = listTeleporters[0].position
-                elif teleState2 == 2:
+                elif teleState2 == 2 and self.distance(board_bot.position, listTeleporters[1].position) != 0:
                     self.goal_position = listTeleporters[1].position
                 else: 
                     self.goal_position = gp
             else:
-                self.goal_position = base
-                if teleState1 == 1:
+                self.goal_position = board_bot.properties.base
+                if teleState1 == 1 and self.distance(board_bot.position, listTeleporters[0].position) != 0:
                     self.goal_position = listTeleporters[0].position
                     print(f"TeleporterA (Base) : ({self.goal_position.x}, {self.goal_position.y})")
-                elif teleState1 == 2:
+                elif teleState1 == 2 and self.distance(board_bot.position, listTeleporters[1].position) != 0:
                     self.goal_position = listTeleporters[1].position
                     print(f"TeleporterB (Base) : ({self.goal_position.x}, {self.goal_position.y})")
                 else: #teleState == 0:
-                    print(f"Base : x = {self.goal_position.x}, y = {self.goal_position.y}")
+                    print(f"Base : ({self.goal_position.x}, {self.goal_position.y})")
 
-            
-            
         
         delta_x, delta_y = get_direction(
             current_position.x,
@@ -123,5 +120,12 @@ class GreedyTele(BaseLogic) :
             self.goal_position.x,
             self.goal_position.y,
         )
+        if (delta_x == 0 and delta_y == 0):
+            if (current_position.y == 0):
+                delta_x = 0; delta_y = 1
+            else:
+                delta_x = 0; delta_y = -1
+
+
 
         return delta_x, delta_y
