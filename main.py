@@ -8,15 +8,15 @@ from game.bot_handler import BotHandler
 from game.logic.random import RandomLogic
 from game.util import *
 from game.logic.base import BaseLogic
-from game.logic.justmovebro import JustMoveBro
+from game.logic.lobotomygreedy import LobotomyGreedy
 from game.logic.greedyv1 import GreedyV1
-from game.logic.greedytele import GreedyTele
+from game.logic.logikanyananti import LogikanyaNanti
 
 init()
 BASE_URL = "http://localhost:3000/api"
 DEFAULT_BOARD_ID = 1
 CONTROLLERS = {
-    "Random": RandomLogic, "JustMoveBro": JustMoveBro, "GreedyV1" : GreedyV1, "GreedyTele" : GreedyTele
+    "Random": RandomLogic, "LobotomyGreedy": LobotomyGreedy, "GreedyV1" : GreedyV1, "LogikanyaNanti" : LogikanyaNanti
 }
 
 ###############################################################################

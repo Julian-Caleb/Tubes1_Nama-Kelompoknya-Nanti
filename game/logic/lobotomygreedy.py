@@ -17,7 +17,7 @@ from ..util import get_direction
 # And when he win, he said to the opponent's bot,
 # "Stand proud, you have optimal time complexity".
 
-class JustMoveBro(BaseLogic) :
+class LobotomyGreedy(BaseLogic) :
     # Cursed energy manipulation: Constructor
     def __init__(self) :
         self.directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
