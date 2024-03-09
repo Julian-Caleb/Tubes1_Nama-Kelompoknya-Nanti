@@ -1,8 +1,3 @@
-1. Penjelasan singkat algoritma greedy yang diimplementasikan
-2. Requirement program dan instalasi tertentu bila ada
-3. Command atau langkah-langkah dalam meng-compile atau build program 
-4. Author (identitas pembuat)
-
 # Diamond2 ©etimo Bot
 Tugas Besar 1 IF2211 Strategi Algoritma -  Greedy
 Original Diamond2 etimo github : https://github.com/Etimo/diamonds2
