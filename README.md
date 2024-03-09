@@ -1,5 +1,5 @@
 # Diamond2 ©etimo Bot
-Tugas Besar 1 IF2211 Strategi Algoritma -  Greedy
+Tugas Besar 1 IF2211 Strategi Algoritma -  Greedy <br>
 Original Diamond2 etimo github : https://github.com/Etimo/diamonds2
 
 <p align="center">
